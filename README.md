@@ -1,7 +1,4 @@
-# backend
-Backend for the game
-
-## About
+# About
 Backend made on Django for the game Parsec Capitalism
 
 ## Setup
@@ -48,9 +45,10 @@ Next step is to launch django project. Commands should be executed from `~backen
 # Migrate apps databases
 python3 manage.py migrate
 
-# Run the server. 
+# Run the server 
 python3 manage.py runserver
 ```
 After that the server should be running and you can find it at [127.0.0.1:8000](http://127.0.0.1:8000/).
+
 ![The result should look look like that](https://imgur.com/7RgyNXa)
 
