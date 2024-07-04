@@ -49,6 +49,6 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 After that the server should be running and you can find it at [127.0.0.1:8000](http://127.0.0.1:8000/).
-
-![The result should look look like that](https://imgur.com/7RgyNXa.png)
+The result should look look like that.
+![result](https://imgur.com/7RgyNXa.png)
 
