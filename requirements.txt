@@ -1,0 +1,9 @@
+# General
+flake8==7.0.0
+pep8-naming==0.14.1
+flake8-docstrings==1.7.0
+
+
+# Project dependencies
+Django==5.0.6
+
