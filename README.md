@@ -1,5 +1,32 @@
 # About
-Backend made on Django for the game Parsec Capitalism
+Backend for the game Parsec Capitalism.
+Made using:
+- Django
+- Sqlite (to be changes to PostreSQL)
+
+---
+**Table of Contents**
+ - [Project Structure](#project-structure)
+ - [Database Structure](#database-structure)
+ - [Setup](#setup)
+---
+## Project Structure
+
+Current version of a project consists of two apps:
+- Homepage
+- Ships
+
+## Database Structure
+```mermaid
+erDiagram
+    CUSTOMER
+    CUSTOMER {
+        integer id PK
+        string title 
+        integer cost
+        integer size
+    }
+```
 
 ## Setup
 
