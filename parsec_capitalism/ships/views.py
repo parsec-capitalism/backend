@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def ships_list(request):
+    template = 'ships/ships.html'
+    return render(request, template)
