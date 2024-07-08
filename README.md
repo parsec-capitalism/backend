@@ -70,8 +70,8 @@ Current version of a project consists of two apps:
 ## Database Structure
 ```mermaid
 erDiagram
-    CUSTOMER
-    CUSTOMER {
+    SHIPS
+    SHIPS {
         integer id PK
         string title 
         integer cost
