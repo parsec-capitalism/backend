@@ -81,5 +81,5 @@ erDiagram
 ```
 
 ## API
-`/ships/api/ships-api/` - All the ships
+`/api/ships` - All the ships
 
