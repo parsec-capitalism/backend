@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2> List of Missions</h2>
+
+{% for mission in missions_list%}
+  <ul>
+    <li>ID: {{ mission.id }}</li>
+    <li>Name: {{ mission.title }}</li>
+  </ul>
+{% endfor %} 
+
+{% endblock %}

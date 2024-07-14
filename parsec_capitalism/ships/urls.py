@@ -5,7 +5,7 @@ from . import views
 
 app_name = 'ships'
 router = routers.DefaultRouter()
-router.register(r'ships-api', views.ShipViewSet)
+router.register(r'ships', views.ShipViewSet)
 
 urlpatterns = [
     path('', views.ships_list, name='ships_list'),

@@ -1,0 +1,12 @@
+<!-- <header> -->
+<!--   <a href="{% url 'homepage:homepage' %}">Homepage</a> -->
+<!--   <a href="{% url 'ships:ships_list' %}">Ships</a> -->
+<!-- </header> -->
+
+<header>
+  <nav>
+    <button onclick="location.href='{% url 'homepage:homepage' %}'" style="margin-right: 10px;">Homepage</button>
+    <button onclick="location.href='{% url 'ships:ships_list' %}'">Ships</button>
+    <button onclick="location.href='{% url 'missions:missions_list' %}'">Missions</button>
+  </nav>
+</header>

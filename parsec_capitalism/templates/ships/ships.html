@@ -1,4 +1,6 @@
-<h1> Ships are here </h1>
+{% extends "base.html" %}
+{% block content %}
+<h2> List of Ships </h2>
 
 {% for ship in ships_list%}
   <ul>
@@ -10,6 +12,4 @@
   </ul>
 {% endfor %} 
 
-<p>
-<a href="{% url 'homepage:homepage' %}">Back to Homepage</a>
-</p>
+{% endblock %}

@@ -6,6 +6,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls')),
     path('ships/', include('ships.urls')),
+    path('missions/', include('missions.urls')),
 ]
 
 if settings.DEBUG:
