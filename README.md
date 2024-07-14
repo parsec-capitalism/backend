@@ -9,24 +9,8 @@ Made using:
  - [Project Structure](#project-structure)
  - [Database Structure](#database-structure)
  - [Setup](#setup)
+ - [API](#api)
 ---
-## Project Structure
-
-Current version of a project consists of two apps:
-- Homepage
-- Ships
-
-## Database Structure
-```mermaid
-erDiagram
-    CUSTOMER
-    CUSTOMER {
-        integer id PK
-        string title 
-        integer cost
-        integer size
-    }
-```
 
 ## Setup
 
@@ -76,6 +60,26 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 After that the server should be running and you can find it at [127.0.0.1:8000](http://127.0.0.1:8000/).
-The result should look look like that.
-![result](https://imgur.com/7RgyNXa.png)
+
+## Project Structure
+
+Current version of a project consists of two apps:
+- Homepage
+- Ships
+
+## Database Structure
+```mermaid
+erDiagram
+    SHIPS
+    SHIPS {
+        integer id PK
+        string title 
+        integer cost
+        integer size
+        slug slug
+    }
+```
+
+## API
+`/ships/api/ships-api/` - All the ships
 
