@@ -10,9 +10,6 @@ router.register(r'ships', views.ShipViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('homepage.urls')),
-    path('ships/', include('ships.urls')),
-    path('missions/', include('missions.urls')),
     path('api/', include(router.urls)),
     path('api-auth/', include(
         'rest_framework.urls', namespace='rest_framework')),
@@ -20,5 +17,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     import debug_toolbar
-    # Добавить к списку urlpatterns список адресов из приложения debug_toolbar:
     urlpatterns += (path('__debug__/', include(debug_toolbar.urls)),)

@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ships.apps.ShipsConfig',
-    'homepage.apps.HomepageConfig',
     'missions.apps.MissionsConfig',
     'debug_toolbar',
     'rest_framework',
