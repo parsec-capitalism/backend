@@ -1,20 +1,19 @@
-from django.shortcuts import render
-from ships.models import Ships
-from rest_framework import permissions, viewsets
+from rest_framework import viewsets
 
-from ships.serializers import ShipSerializer
+from .models import Ship, User, UserShip
+from .serializers import ShipSerializer, UserSerializer, UserShipSerializer
 
 
-class ShipViewSet(viewsets.ModelViewSet):
-    queryset = Ships.objects.all()
+class ShipViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Ship.objects.all()
     serializer_class = ShipSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 
-def ships_list(request):
-    template = 'ships/ships.html'
-    ships_list = Ships.objects.all()
-    context = {
-        'ships_list': ships_list,
-    }
-    return render(request, template, context)
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    
+
+class UserShipViewSet(viewsets.ModelViewSet):
+    queryset = UserShip.objects.all()
+    serializer_class = UserShipSerializer

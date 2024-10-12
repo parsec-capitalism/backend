@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Ships
+from .models import Ship, UserShip
 
 
 class ShipsAdmin(admin.ModelAdmin):
@@ -19,5 +19,7 @@ class ShipsAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
 
 
+
 # Register your models here.
-admin.site.register(Ships, ShipsAdmin)
+admin.site.register(Ship, ShipsAdmin)
+admin.site.register(UserShip)
