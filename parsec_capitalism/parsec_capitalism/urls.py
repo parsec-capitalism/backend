@@ -15,6 +15,8 @@ router.register('users_ships', UserShipViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls.jwt')),
 ]
 
 if settings.DEBUG:
