@@ -5,11 +5,10 @@ from .models import Ship, User, UserShip
 class ShipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ship
-        fields = ['id', 'title', 'cost', 'size', 'slug']
+        fields = ('id', 'title', 'cost', 'size', 'slug')
 
 
 class UserSerializer(serializers.ModelSerializer):
-    # cats = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
         model = User
@@ -18,6 +17,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserShipSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(read_only=True)
+    ship = serializers.SlugRelatedField(slug_field='slug', queryset=Ship.objects.all())
+
     class Meta:
         model = UserShip
-        fields = ['id', 'user', 'ship', 'on_mission']
+        fields = ('id', 'user', 'ship', 'on_mission')

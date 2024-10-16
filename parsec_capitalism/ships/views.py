@@ -12,8 +12,11 @@ class ShipViewSet(viewsets.ReadOnlyModelViewSet):
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    
+
 
 class UserShipViewSet(viewsets.ModelViewSet):
     queryset = UserShip.objects.all()
     serializer_class = UserShipSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
