@@ -5,10 +5,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 from ships.views import ShipViewSet, UserViewSet, UserShipViewSet
+from resources.views import ResourceViewSet
 
 router = DefaultRouter()
 router.register('ships', ShipViewSet)
 router.register('users', UserViewSet)
+router.register('resources', ResourceViewSet)
 router.register('users_ships', UserShipViewSet, basename='usership')
 
 

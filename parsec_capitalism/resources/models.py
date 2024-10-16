@@ -4,8 +4,8 @@ from django.db import models
 User = get_user_model()
 
 
-class UserResource(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+class Resource(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     datacoin = models.PositiveIntegerField(verbose_name='Datacoins')
     quantium = models.PositiveIntegerField(verbose_name='Quantium')
 
