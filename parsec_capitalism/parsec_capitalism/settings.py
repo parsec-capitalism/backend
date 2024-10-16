@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ships.apps.ShipsConfig',
     'missions.apps.MissionsConfig',
+    'resources.apps.ResourcesConfig',
     'debug_toolbar',
     'rest_framework',
     'djoser',
