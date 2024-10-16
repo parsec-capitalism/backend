@@ -9,7 +9,7 @@ from ships.views import ShipViewSet, UserViewSet, UserShipViewSet
 router = DefaultRouter()
 router.register('ships', ShipViewSet)
 router.register('users', UserViewSet)
-router.register('users_ships', UserShipViewSet)
+router.register('users_ships', UserShipViewSet, basename='usership')
 
 
 urlpatterns = [
