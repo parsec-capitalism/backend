@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from django.shortcuts import get_list_or_404, get_object_or_404
+from django.shortcuts import get_object_or_404
 
 from .models import Ship, User, UserShip
 from .serializers import ShipSerializer, UserSerializer, UserShipSerializer
@@ -23,16 +23,14 @@ class UserShipViewSet(viewsets.ModelViewSet):
     serializer_class = UserShipSerializer
 
     def retrieve(self, request, pk=None):
-        user = get_object_or_404(User, username=pk)
-        queryset = UserShip.objects.filter(user=user)
-        usership = get_list_or_404(queryset)
-        serializer = UserShipSerializer(usership, many=True)
+        queryset = UserShip.objects.filter(user=request.user)
+        serializer = UserShipSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def perform_create(self, serializer):
-        ship = self.request.data.get('ship')
-        ship = get_object_or_404(Ship, slug=ship)
-        ship_cost = ship.cost 
+        ship_slug = self.request.data.get('ship')
+        ship = get_object_or_404(Ship, slug=ship_slug)
+        ship_cost = ship.cost
 
         user_resource = get_object_or_404(Resource, user=self.request.user)
         user_resource.datacoin -= ship_cost
