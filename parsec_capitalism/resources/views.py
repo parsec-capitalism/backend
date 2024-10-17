@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from .models import User, Resource
+from .models import Resource
 from .serializers import ResourceSerializer
 
 

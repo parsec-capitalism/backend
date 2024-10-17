@@ -1,9 +1,12 @@
 from rest_framework import serializers
-from .models import Resource
+from .models import Resource, User
 
 
 class ResourceSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True)
+    user = serializers.SlugRelatedField(
+        queryset=User.objects.all(),
+        slug_field='username'
+    )
 
     class Meta:
         model = Resource

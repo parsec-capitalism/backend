@@ -5,6 +5,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 
 from .models import Ship, User, UserShip
 from .serializers import ShipSerializer, UserSerializer, UserShipSerializer
+from resources.models import Resource
 
 
 class ShipViewSet(viewsets.ReadOnlyModelViewSet):
@@ -18,10 +19,8 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class UserShipViewSet(viewsets.ModelViewSet):
-    def list(self, request):
-        queryset = UserShip.objects.all()
-        serializer = UserShipSerializer(queryset, many=True)
-        return Response(serializer.data)
+    queryset = UserShip.objects.all()
+    serializer_class = UserShipSerializer
 
     def retrieve(self, request, pk=None):
         user = get_object_or_404(User, username=pk)
@@ -31,4 +30,12 @@ class UserShipViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def perform_create(self, serializer):
+        ship = self.request.data.get('ship')
+        ship = get_object_or_404(Ship, slug=ship)
+        ship_cost = ship.cost 
+
+        user_resource = get_object_or_404(Resource, user=self.request.user)
+        user_resource.datacoin -= ship_cost
+        user_resource.save()
+
         serializer.save(user=self.request.user)
