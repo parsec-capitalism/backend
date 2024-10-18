@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
-from ships.views import ShipViewSet, UserShipViewSet, ListUserViewSet
+from ships.views import ShipViewSet, UserShipViewSet, ListUserViewSet, ListUserShipViewSet
 from resources.views import ResourceViewSet
 
 router = DefaultRouter()
@@ -12,6 +12,7 @@ router.register('ships', ShipViewSet)
 router.register('users', ListUserViewSet)
 router.register('resources', ResourceViewSet)
 router.register('users_ships', UserShipViewSet, basename='usership')
+router.register('list_users_ships', ListUserShipViewSet, basename='list_usership')
 
 
 urlpatterns = [

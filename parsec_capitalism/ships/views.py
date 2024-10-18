@@ -19,14 +19,16 @@ class ListUserViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = UserSerializer
 
 
-class UserShipViewSet(viewsets.ModelViewSet):
-    queryset = UserShip.objects.all()
-    serializer_class = UserShipSerializer
-
-    def retrieve(self, request, pk=None):
+class ListUserShipViewSet(viewsets.ModelViewSet):
+    def list(self, request):
         queryset = UserShip.objects.filter(user=request.user)
         serializer = UserShipSerializer(queryset, many=True)
         return Response(serializer.data)
+
+
+class UserShipViewSet(viewsets.ModelViewSet):
+    queryset = UserShip.objects.all()
+    serializer_class = UserShipSerializer
 
     def perform_create(self, serializer):
         ship_slug = self.request.data.get('ship')
