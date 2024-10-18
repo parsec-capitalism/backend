@@ -8,7 +8,7 @@ class Missions(models.Model):
 
     class Meta:
         verbose_name = 'Mission'
-        verbose_name_plural = 'List of Mission'
+        verbose_name_plural = 'List of Missions'
 
     def __str__(self):
         return self.title

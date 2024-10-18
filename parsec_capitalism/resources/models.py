@@ -14,4 +14,4 @@ class Resource(models.Model):
         verbose_name_plural = 'Players Resources'
 
     def __str__(self):
-        return f'{self.user}:{self.datacoin} {self.quantium}'
+        return f'{self.user}'
