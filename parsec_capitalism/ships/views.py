@@ -1,10 +1,11 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
+
 from django.shortcuts import get_object_or_404
 
-from .models import Ship, User, UserShip
-from .serializers import ShipSerializer, UserSerializer, UserShipSerializer
+from .models import Ship, UserShip, User
+from .serializers import ShipSerializer, UserShipSerializer, UserSerializer
 from resources.models import Resource
 
 
@@ -13,7 +14,7 @@ class ShipViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ShipSerializer
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
+class ListUserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 

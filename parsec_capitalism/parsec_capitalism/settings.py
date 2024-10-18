@@ -151,3 +151,9 @@ SIMPLE_JWT = {
    'ACCESS_TOKEN_LIFETIME': timedelta(days=10),
    'AUTH_HEADER_TYPES': ('Bearer',),
 } 
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'ships.serializers.CustomUserCreateSerializer',
+        }
+}
