@@ -16,5 +16,6 @@ class ResourceAdmin(admin.ModelAdmin):
 
     list_display_links = ('user',)
 
+
 # Register your models here.
 admin.site.register(Resource, ResourceAdmin)
