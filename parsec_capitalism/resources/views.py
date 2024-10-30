@@ -4,6 +4,6 @@ from .models import Resource
 from .serializers import ResourceSerializer
 
 
-class ResourceViewSet(viewsets.ModelViewSet):
+class ResourceViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Resource.objects.all()
     serializer_class = ResourceSerializer

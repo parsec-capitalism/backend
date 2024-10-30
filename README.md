@@ -25,11 +25,11 @@ python3 -m venv venv
 # Launch virtual enviroment
 source venv/bin/activate 
 
-# If you need to deactivate
-deactivate
-
 # Install dependencies inside VE
 python3 -m pip install -r requirements.txt 
+
+# If you need to deactivate
+deactivate
 ```
 After installing the packeges if you do command `pip3 list` the response should look something like that.
 ```bash
@@ -40,13 +40,7 @@ Django            5.0.6
 flake8            7.0.0
 flake8-docstrings 1.7.0
 mccabe            0.7.0
-pep8-naming       0.14.1
-pip               24.1.1
-pycodestyle       2.11.1
-pydocstyle        6.3.0
-pyflakes          3.2.0
-snowballstemmer   2.2.0
-sqlparse          0.5.0
+...
 ```
 
 ### Django
@@ -80,6 +74,6 @@ erDiagram
     }
 ```
 
-## API
-`/api/ships` - All the ships
+## Endpoints 
+`api/v1/docs` - API Docummentation (OpenAPI 3.0 compatible)
 
