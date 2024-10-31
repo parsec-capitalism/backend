@@ -3,4 +3,4 @@ line-length = 80
 include = '\.pyi?$'
 
 [tool.isort]
-src_paths = ["*"]
+src_paths = ["backend"]
