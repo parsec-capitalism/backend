@@ -7,7 +7,6 @@ Made using:
 ---
 **Table of Contents**
  - [Project Structure](#project-structure)
- - [Database Structure](#database-structure)
  - [Setup](#setup)
  - [API](#api)
 ---
@@ -47,4 +46,5 @@ After that the server should be running and you can find it at [127.0.0.1:8000](
 
 ## Endpoints 
 `api/v1/docs` - API Docummentation (OpenAPI 3.0 compatible)
+
 
