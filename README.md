@@ -28,19 +28,8 @@ source venv/bin/activate
 # Install dependencies inside VE
 python3 -m pip install -r requirements.txt 
 
-# If you need to deactivate
+# If you need to deactivate venv
 deactivate
-```
-After installing the packeges if you do command `pip3 list` the response should look something like that.
-```bash
-Package           Version
------------------ -------
-asgiref           3.8.1
-Django            5.0.6
-flake8            7.0.0
-flake8-docstrings 1.7.0
-mccabe            0.7.0
-...
 ```
 
 ### Django
@@ -55,24 +44,6 @@ python3 manage.py runserver
 ```
 After that the server should be running and you can find it at [127.0.0.1:8000](http://127.0.0.1:8000/).
 
-## Project Structure
-
-Current version of a project consists of two apps:
-- Homepage
-- Ships
-
-## Database Structure
-```mermaid
-erDiagram
-    SHIPS
-    SHIPS {
-        integer id PK
-        string title 
-        integer cost
-        integer size
-        slug slug
-    }
-```
 
 ## Endpoints 
 `api/v1/docs` - API Docummentation (OpenAPI 3.0 compatible)
