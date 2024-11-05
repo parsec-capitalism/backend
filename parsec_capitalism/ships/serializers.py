@@ -1,9 +1,9 @@
-from djoser.serializers import UserCreateSerializer
 from djoser.conf import settings
+from djoser.serializers import UserCreateSerializer
+from resources.models import Resource
 from rest_framework import serializers
 
-from .models import Ship, UserShip, User
-from resources.models import Resource
+from .models import Ship, User, UserShip
 
 STARTER_DATACOINS = 666
 STARTER_QUANTUIM = 100
