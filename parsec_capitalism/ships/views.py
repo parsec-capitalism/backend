@@ -1,8 +1,7 @@
 from django.shortcuts import get_object_or_404
+from resources.models import Resource
 from rest_framework import viewsets
 from rest_framework.response import Response
-
-from resources.models import Resource
 
 from .models import Ship, User, UserShip
 from .serializers import ShipSerializer, UserSerializer, UserShipSerializer
@@ -38,7 +37,7 @@ class UserShipViewSet(viewsets.ModelViewSet):
     serializer_class = UserShipSerializer
 
     def perform_create(self, serializer):
-        ship_slug = self.request.data.get("ship")
+        ship_slug = self.request.data.get('ship')
         ship = get_object_or_404(Ship, slug=ship_slug)
         ship_cost = ship.cost
 

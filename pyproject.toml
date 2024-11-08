@@ -1,5 +1,7 @@
+[tool.ruff]
+src = ["."]
+
 [tool.ruff.format]
 quote-style = "single"
+indent-style = "space"
 
-[tool.isort]
-src_paths = ["*"]
