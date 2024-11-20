@@ -5,22 +5,16 @@ from .models import Ship, UserShip
 
 class ShipsAdmin(admin.ModelAdmin):
     list_display = (
-        'title',
-        'cost',
-        'size',
-        'slug'
+        'slug',
+        'name',
+        'price',
+        'cargo_weight',
+        'cargo_volume',
+        'range',
     )
 
-    list_editable = (
-        'cost',
-        'size',
-        'slug'
-    )
-
-    list_display_links = ('title',)
+    list_display_links = ('name',)
 
 
-
-# Register your models here.
 admin.site.register(Ship, ShipsAdmin)
 admin.site.register(UserShip)

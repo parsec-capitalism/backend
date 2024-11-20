@@ -5,14 +5,16 @@ User = get_user_model()
 
 
 class Ship(models.Model):
-    title = models.CharField(max_length=128, verbose_name='Name of the ship')
-    cost = models.IntegerField(verbose_name='Price')
-    size = models.IntegerField(verbose_name='Size')
     slug = models.SlugField(verbose_name='Slug for internal use')
+    name = models.CharField(max_length=128, verbose_name='Name of the ship')
+    price = models.IntegerField(verbose_name='Price')
+    cargo_weight = models.IntegerField(verbose_name='Cargo Weight')
+    cargo_volume = models.IntegerField(verbose_name='Cargo Volume')
+    range = models.IntegerField(verbose_name='Range')
 
     class Meta:
-        verbose_name = 'Ship Model'
-        verbose_name_plural = 'List of Ship Models'
+        verbose_name = 'Ship'
+        verbose_name_plural = 'List of Ships'
 
     def __str__(self):
         return self.title
@@ -28,4 +30,4 @@ class UserShip(models.Model):
         verbose_name_plural = 'List of Ships per Player'
 
     def __str__(self):
-        return f'{self.user} {self.ship}'
+        return f'{self.user} - {self.ship}'
