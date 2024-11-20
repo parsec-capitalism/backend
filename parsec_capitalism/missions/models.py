@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class Missions(models.Model):
     title = models.CharField(max_length=128, verbose_name='Mission name')
