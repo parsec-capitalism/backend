@@ -1,8 +1,9 @@
 from django.contrib import admin
 
-from .models import Ship, UserShip
+from .models import Perk, Ship, UserShip
 
 
+@admin.register(Ship)
 class ShipsAdmin(admin.ModelAdmin):
     list_display = (
         'slug',
@@ -16,5 +17,22 @@ class ShipsAdmin(admin.ModelAdmin):
     list_display_links = ('name',)
 
 
-admin.site.register(Ship, ShipsAdmin)
-admin.site.register(UserShip)
+@admin.register(Perk)
+class PerksAdmin(admin.ModelAdmin):
+    list_display = (
+        'slug',
+        'name',
+        'num_value',
+        'bool_value',
+    )
+
+    list_display_links = ('name',)
+
+
+@admin.register(UserShip)
+class UserShipAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        'ship',
+        'on_mission',
+    )

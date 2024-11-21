@@ -14,10 +14,24 @@ class Ship(models.Model):
 
     class Meta:
         verbose_name = 'Ship'
-        verbose_name_plural = 'List of Ships'
+        verbose_name_plural = 'Ships'
 
     def __str__(self):
-        return self.title
+        return self.name
+
+
+class Perk(models.Model):
+    slug = models.SlugField('Slug')
+    name = models.CharField('Perk', max_length=255)
+    num_value = models.IntegerField('Number value')
+    bool_value = models.BooleanField('Boolean value')
+
+    class Meta:
+        verbose_name = 'Perk'
+        verbose_name_plural = 'Perks'
+
+    def __str__(self):
+        return self.name
 
 
 class UserShip(models.Model):
@@ -26,8 +40,8 @@ class UserShip(models.Model):
     on_mission = models.BooleanField(verbose_name='On mission', default=False)
 
     class Meta:
-        verbose_name = 'Ships that Players Have'
-        verbose_name_plural = 'List of Ships per Player'
+        verbose_name = 'Players ship'
+        verbose_name_plural = 'Players ships'
 
     def __str__(self):
         return f'{self.user} - {self.ship}'
