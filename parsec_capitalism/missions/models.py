@@ -16,4 +16,4 @@ class Missions(models.Model):
         verbose_name_plural = 'List of Missions'
 
     def __str__(self):
-        return self.title
+        return self.codename

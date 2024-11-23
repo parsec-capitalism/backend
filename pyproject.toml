@@ -5,3 +5,5 @@ src = ["parsec_capitalism"]
 quote-style = "single"
 indent-style = "space"
 
+[tool.ruff.lint.pycodestyle]
+max-line-length = 88
