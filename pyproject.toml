@@ -1,5 +1,5 @@
 [tool.ruff]
-src = ["backend"]
+src = ["parsec_capitalism"]
 
 [tool.ruff.format]
 quote-style = "single"
