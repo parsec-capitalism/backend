@@ -5,6 +5,8 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
 
 urlpatterns = [
     path('api/v1/', include('ships.urls')),
+    path('api/v1/', include('players.urls')),
+    path('api/v1/', include('missions.urls')),
     path('admin/', admin.site.urls),
     path('api/v1/schema/', SpectacularAPIView.as_view(), name='schema'),
     path(
