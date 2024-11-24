@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'missions.apps.MissionsConfig',
     'resources.apps.ResourcesConfig',
     'core.apps.CoreConfig',
+    'players.apps.PlayersConfig',
     'debug_toolbar',
     'rest_framework',
     'djoser',
