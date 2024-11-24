@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404
-from resources.models import Resource
 from rest_framework import viewsets
 from rest_framework.response import Response
 
@@ -41,8 +40,8 @@ class UserShipViewSet(viewsets.ModelViewSet):
         ship = get_object_or_404(Ship, slug=ship_slug)
         ship_cost = ship.cost
 
-        user_resource = get_object_or_404(Resource, user=self.request.user)
-        user_resource.datacoin -= ship_cost
-        user_resource.save()
+        # user_resource = get_object_or_404(Resource, user=self.request.user)
+        # user_resource.datacoin -= ship_cost
+        # user_resource.save()
 
         serializer.save(user=self.request.user)
