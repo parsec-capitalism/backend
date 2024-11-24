@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Missions(models.Model):
+class Mission(models.Model):
     codename = models.CharField('Codename', max_length=128)
     expansion = models.CharField('Expansion', max_length=128)
     reward = models.IntegerField('Reward')

@@ -4,7 +4,7 @@ import os
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from missions.models import Missions
+from missions.models import Mission
 from parsec_capitalism.settings import BASE_DIR
 from ships.models import Ship
 
@@ -37,7 +37,7 @@ class Command(BaseCommand):
             mission_db = csv.reader(csvfile, delimiter=',')
             next(mission_db, None)
             missions = [
-                Missions(
+                Mission(
                     codename=row[0],
                     expansion=row[1],
                     reward=row[2],
@@ -49,7 +49,7 @@ class Command(BaseCommand):
                 )
                 for row in mission_db
             ]
-            Missions.objects.bulk_create(missions)
+            Mission.objects.bulk_create(missions)
             self.stdout.write(f'Successfully loaded {len(missions)} missions object(s)')
 
     def handle(self, *args, **kwargs):
@@ -59,7 +59,7 @@ class Command(BaseCommand):
             with transaction.atomic():
                 self.stdout.write('Deleting existing data')
                 Ship.objects.all().delete()
-                Missions.objects.all().delete()
+                Mission.objects.all().delete()
 
                 for file in os.listdir(directory):
                     file_path = os.path.join(directory, file)

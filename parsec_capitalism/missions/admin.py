@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import Missions
+from .models import Mission
 
 
-@admin.register(Missions)
+@admin.register(Mission)
 class MissionsAdmin(admin.ModelAdmin):
     list_display = ('codename',)
