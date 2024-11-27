@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from .models import Player
+from .serializers import PlayerSerializer
+
+
+class PlayerViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
