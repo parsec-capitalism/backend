@@ -2,17 +2,17 @@
 Backend for the game Parsec Capitalism.
 Made using:
 - Django
-- Sqlite (to be changes to PostreSQL)
+- Sqlite
 
 ---
 **Table of Contents**
  - [Project Structure](#project-structure)
  - [Setup](#setup)
- -- [Python](#python)
- -- [Load game data](#load-game-data)
- -- [Django](#django)
+    - [Python](#python)
+    - [Load game data](#load-game-data)
+    - [Django](#django)
  - [Test API](#bruno-api-testing)
- - [API](#api)
+ - [Endpoints](#endpoints)
 ---
 
 ## Setup
