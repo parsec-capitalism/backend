@@ -31,8 +31,16 @@ python3 -m pip install -r requirements.txt
 deactivate
 ```
 
-### Django
+### Load game data
+Game data is stored in `~backend/static/game_data` in a csv files.
+```bash
+#Command should be done from ~backend/parsec_capitalism/
+python3 manage.py loadcsv
+```
+This command will clean all respective DBs(models) and populate them with the objects from csv files.
 
+
+### Django
 Next step is to launch django project. Commands should be executed from `~backend/parsec_capitalism/`
 ```bash
 # Migrate apps databases
