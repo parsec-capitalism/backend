@@ -8,6 +8,10 @@ Made using:
 **Table of Contents**
  - [Project Structure](#project-structure)
  - [Setup](#setup)
+ -- [Python](#python)
+ -- [Load game data](#load-game-data)
+ -- [Django](#django)
+ - [Test API](#bruno-api-testing)
  - [API](#api)
 ---
 
@@ -50,6 +54,23 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 After that the server should be running and you can find it at [127.0.0.1:8000](http://127.0.0.1:8000/).
+
+
+## Bruno api testing
+
+### How import collection
+
+1. Download Bruno: https://www.usebruno.com/.
+2. In the menu at the top left corner choose "Import collection" and pick "Bruno collection".
+3. Choose the folder bruno_collection inside Backend repo.
+
+### How run the collection
+1. Right-click the collection name in the left menu.
+2. Choose Settings.
+3. Go to the Vars tab.
+4. Add value to the Username variable (this should be done before every Run). Press Save.
+5. Right-click the collection name in the left menu again and choose Run.
+6. Run Collection.v
 
 
 ## Endpoints 
