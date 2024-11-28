@@ -16,16 +16,18 @@ class ShipViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ShipSerializer
 
 
-class ListUserShipViewSet(viewsets.ModelViewSet):
+class ListUserShipViewSet(viewsets.ReadOnlyModelViewSet):
     """To-Be Hangar endpoint"""
 
     def list(self, request):
-        queryset = UserShip.objects.filter()
+        queryset = UserShip.objects.filter(user=self.request.user)
         serializer = UserShipSerializer(queryset, many=True)
         return Response(serializer.data)
 
 
 class APIBuyShip(APIView):
+    """Api for buying a ship. Request needs slug of a ship that is being bought."""
+
     def post(self, request):
         serializer = BuyShipSerializer(
             data=request.data,
