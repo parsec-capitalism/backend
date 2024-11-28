@@ -1,32 +1,29 @@
-from djoser.conf import settings
-from djoser.serializers import UserCreateSerializer
-from resources.models import Resource
 from rest_framework import serializers
 
-from .models import Ship, User, UserShip
-
-STARTER_DATACOINS = 666
-STARTER_QUANTUIM = 100
+from .models import Ship, UserShip
 
 
 class ShipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ship
-        fields = ('id', 'title', 'cost', 'size', 'slug')
+        fields = (
+            'slug',
+            'name',
+            'price',
+            'cargo_weight',
+            'cargo_volume',
+            'range',
+            'id',
+        )
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'first_name', 'last_name')
-        ref_name = 'ReadOnlyUsers'
-
-
-class UserShipSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True)
+class BuyShipSerializer(serializers.ModelSerializer):
     ship = serializers.SlugRelatedField(
         slug_field='slug',
-        queryset=Ship.objects.all()
+        queryset=Ship.objects.all(),
+    )
+    user = serializers.PrimaryKeyRelatedField(
+        read_only=True, default=serializers.CurrentUserDefault()
     )
 
     class Meta:
@@ -34,20 +31,13 @@ class UserShipSerializer(serializers.ModelSerializer):
         fields = ('id', 'user', 'ship', 'on_mission')
 
 
-class CustomUserCreateSerializer(UserCreateSerializer):
-    class Meta(UserCreateSerializer.Meta):
-        model = User
-        fields = tuple(User.REQUIRED_FIELDS) + (
-            settings.LOGIN_FIELD,
-            settings.USER_ID_FIELD,
-            "password",
-        )
+class UserShipSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(read_only=True)
+    ship = serializers.SlugRelatedField(
+        slug_field='slug',
+        queryset=Ship.objects.all(),
+    )
 
-    def create(self, validated_data):
-        user = super().create(validated_data)
-        Resource.objects.create(
-            user=user,
-            datacoin=STARTER_DATACOINS,
-            quantium=STARTER_QUANTUIM
-        )
-        return user
+    class Meta:
+        model = UserShip
+        fields = ('id', 'user', 'ship', 'on_mission')

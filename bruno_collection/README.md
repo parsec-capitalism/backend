@@ -1,0 +1,15 @@
+## Bruno api testing collection
+
+### How import collection
+
+1. Download Bruno: https://www.usebruno.com/.
+2. In the menu at the top left corner choose "Import collection" and pick "Bruno collection".
+3. Choose the folder bruno_collection inside Backend repo.
+
+## How run the collection
+1. Right-click the collection name in the left menu.
+2. Choose Settings.
+3. Go to the Vars tab.
+4. Add value to the Username variable (this should be done before every Run). Press Save.
+5. Right-click the collection name in the left menu again and choose Run.
+6. Run Collection.v

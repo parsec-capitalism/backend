@@ -1,26 +1,38 @@
 from django.contrib import admin
 
-from .models import Ship, UserShip
+from .models import Perk, Ship, UserShip
 
 
+@admin.register(Ship)
 class ShipsAdmin(admin.ModelAdmin):
     list_display = (
-        'title',
-        'cost',
-        'size',
-        'slug'
+        'slug',
+        'name',
+        'price',
+        'cargo_weight',
+        'cargo_volume',
+        'range',
     )
 
-    list_editable = (
-        'cost',
-        'size',
-        'slug'
+    list_display_links = ('name',)
+
+
+@admin.register(Perk)
+class PerksAdmin(admin.ModelAdmin):
+    list_display = (
+        'slug',
+        'name',
+        'num_value',
+        'bool_value',
     )
 
-    list_display_links = ('title',)
+    list_display_links = ('name',)
 
 
-
-# Register your models here.
-admin.site.register(Ship, ShipsAdmin)
-admin.site.register(UserShip)
+@admin.register(UserShip)
+class UserShipAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        'ship',
+        'on_mission',
+    )

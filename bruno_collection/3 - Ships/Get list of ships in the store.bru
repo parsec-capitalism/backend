@@ -1,0 +1,11 @@
+meta {
+  name: Get list of ships in the store
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://127.0.0.1:8000/api/v1/ships/
+  body: none
+  auth: inherit
+}
