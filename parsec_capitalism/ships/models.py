@@ -35,8 +35,16 @@ class Perk(models.Model):
 
 
 class UserShip(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    ship = models.ForeignKey(Ship, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='player',
+    )
+    ship = models.ForeignKey(
+        Ship,
+        on_delete=models.CASCADE,
+        related_name='ships',
+    )
     on_mission = models.BooleanField(verbose_name='On mission', default=False)
 
     class Meta:

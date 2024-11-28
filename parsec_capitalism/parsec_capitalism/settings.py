@@ -26,10 +26,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'players.apps.PlayersConfig',
     'ships.apps.ShipsConfig',
     'missions.apps.MissionsConfig',
     'core.apps.CoreConfig',
-    'players.apps.PlayersConfig',
     'debug_toolbar',
     'rest_framework',
     'djoser',
@@ -143,11 +143,9 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-# DJOSER = {
-#     "SERIALIZERS": {
-#         "user_create": "ships.serializers.CustomUserCreateSerializer",
-#     }
-# }
+DJOSER = {
+    'HIDE_USERS': True,
+}
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',

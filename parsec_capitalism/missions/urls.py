@@ -1,11 +1,14 @@
-from rest_framework import routers
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
 
-app_name = 'missions'
-router = routers.DefaultRouter()
-# router.register(r'missions', views.ShipViewSet)
+from .views import (
+    MissionViewSet,
+)
+
+router = DefaultRouter()
+router.register('missions', MissionViewSet)
+
 
 urlpatterns = [
-    # path('', views.missions_list, name='ships_list'),
-    # path('api/', include(router.urls)),
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include(router.urls)),
 ]

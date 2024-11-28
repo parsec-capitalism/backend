@@ -1,0 +1,15 @@
+meta {
+  name: Buy ship for an auth user
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://127.0.0.1:8000/api/v1/buy_ship/
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  ship: infinity
+}
