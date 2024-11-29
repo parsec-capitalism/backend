@@ -22,7 +22,7 @@ Made using:
 First, you need to activate virtual enviroment and install requirements.
 This should be done from `~backend/`
 ```bash
-#Create virtual enviroment
+# Create virtual enviroment
 python3 -m venv venv 
 
 # Launch virtual enviroment
@@ -36,9 +36,9 @@ deactivate
 ```
 
 ### Load game data
-Game data is stored in `~backend/static/game_data` in a csv files.
+Game data is stored in `~backend/parsec_capitalism/static/game_data` in a csv files.
 ```bash
-#Command should be done from ~backend/parsec_capitalism/
+# Command should be done from ~backend/parsec_capitalism/
 python3 manage.py loadcsv
 ```
 This command will clean all respective DBs(models) and populate them with the objects from csv files.
@@ -74,6 +74,7 @@ After that the server should be running and you can find it at [127.0.0.1:8000](
 
 
 ## Endpoints 
-`api/v1/docs` - API Docummentation (OpenAPI 3.0 compatible)
+`api/v1/docs/` - API Documentation (OpenAPI 3.0 compatible)
+`admin/` - Admin panel
 
 
