@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'ships.apps.ShipsConfig',
     'missions.apps.MissionsConfig',
     'core.apps.CoreConfig',
+    'api.apps.ApiConfig',
     'debug_toolbar',
     'rest_framework',
     'djoser',

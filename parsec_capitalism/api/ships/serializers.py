@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Ship, UserShip
+from ships.models import Ship, UserShip
 
 
 class ShipSerializer(serializers.ModelSerializer):

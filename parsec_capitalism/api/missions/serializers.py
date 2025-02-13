@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Mission
+from missions.models import Mission
 
 
 class MissionSerializer(serializers.ModelSerializer):

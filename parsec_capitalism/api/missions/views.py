@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 
-from .models import Mission
+from missions.models import Mission
+
 from .serializers import MissionSerializer
 
 

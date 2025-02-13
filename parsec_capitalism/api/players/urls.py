@@ -7,7 +7,5 @@ router = DefaultRouter()
 router.register('players', PlayerViewSet)
 
 urlpatterns = [
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
     path('', include(router.urls)),
 ]

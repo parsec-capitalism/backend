@@ -3,7 +3,8 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Ship, UserShip
+from ships.models import Ship, UserShip
+
 from .serializers import BuyShipSerializer, ShipSerializer, UserShipSerializer
 
 User = get_user_model()

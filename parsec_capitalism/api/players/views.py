@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 
-from .models import Player
+from players.models import Player
+
 from .serializers import PlayerSerializer
 
 
