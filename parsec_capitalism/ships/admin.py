@@ -3,30 +3,31 @@ from django.contrib import admin
 from .models import Perk, Ship, UserShip
 
 
+@admin.register(Perk)
+class PerksAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+    list_display_links = ('name',)
+
+
+class ShipPerkInline(admin.TabularInline):
+    model = Ship.perks.through
+
+
 @admin.register(Ship)
 class ShipsAdmin(admin.ModelAdmin):
     list_display = (
         'slug',
         'name',
         'price',
-        'cargo_weight',
-        'cargo_volume',
-        'range',
     )
+    inlines = [ShipPerkInline]
 
     list_display_links = ('name',)
 
 
-@admin.register(Perk)
-class PerksAdmin(admin.ModelAdmin):
-    list_display = (
-        'slug',
-        'name',
-        'num_value',
-        'bool_value',
-    )
-
-    list_display_links = ('name',)
+class ShipPerkInline(admin.TabularInline):
+    model = UserShip.perks.through
 
 
 @admin.register(UserShip)

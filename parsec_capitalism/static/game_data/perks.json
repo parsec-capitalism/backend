@@ -1,0 +1,28 @@
+{
+  "Perks": [
+    {
+      "name": "FahrenGATE",
+      "type": "PERM",
+      "description": "Protection from high temperratures",
+      "ad_text": "Don't sweat about temperature protection. Install FahrenGATE and never worry about your money melting away."
+    },
+    {
+      "name": "SteelOnion",
+      "type": "DISP",
+      "description": "Protection from asteroids",
+      "ad_text": "Peel off asteroid damages with multilayered antiasteroid protection."
+    },
+    {
+      "name": "Electromagnetic DeFryer",
+      "type": "1TIME",
+      "description": "Protection from electromagnetic impulses",
+      "ad_text": "Fried wiring is NOT on a menu. Protect your ships electronics with Electromagnetic DeFryer."
+    },
+    {
+      "name": "Solar Storm Reflector",
+      "type": "RENT",
+      "description": "Protection from solar storm",
+      "ad_text": "Put your sunglasses on. Solar Storm Reflector® by Vast Darkness INC will take care of the rest."
+    }
+  ]
+}

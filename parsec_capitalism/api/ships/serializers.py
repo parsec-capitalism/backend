@@ -1,19 +1,45 @@
 from rest_framework import serializers
 
-from ships.models import Ship, UserShip
+from ships.models import Perk, Ship, ShipPerks, UserShip
+
+
+class PerkSnippetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Perk
+        fields = [
+            'id',
+            'name',
+        ]
+
+
+class ShipPerkSerializer(serializers.ModelSerializer):
+    perk = PerkSnippetSerializer(read_only=True)
+
+    class Meta:
+        model = ShipPerks
+        fields = [
+            'perk',
+            'amount',
+        ]
 
 
 class ShipSerializer(serializers.ModelSerializer):
+    perks = ShipPerkSerializer(
+        source='ship_perks',
+        many=True,
+        read_only=True,
+    )
+
     class Meta:
         model = Ship
         fields = (
+            'id',
             'slug',
             'name',
             'price',
-            'cargo_weight',
-            'cargo_volume',
             'range',
-            'id',
+            'cargo_hold',
+            'perks',
         )
 
 

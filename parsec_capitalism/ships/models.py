@@ -18,8 +18,8 @@ class Perk(models.Model):
         choices=PerkTypes.choices,
         default=PerkTypes.PERMANENT,
     )
-    description = models.TextField('Description')
-    ad_text = models.TextField('Ad Text')
+    description = models.TextField('Description', default='')
+    ad_text = models.TextField('Ad Text', default='')
 
     class Meta:
         verbose_name = 'Perk'
@@ -37,9 +37,7 @@ class Ship(models.Model):
     cargo_hold = models.PositiveSmallIntegerField('Cargo Hold')
     perks = models.ManyToManyField(
         Perk,
-        on_delete=models.CASCADE,
-        related_name='ships_with_perks',
-        verbose_name='Perks',
+        through='ShipPerks',
     )
 
     class Meta:
@@ -48,6 +46,26 @@ class Ship(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ShipPerks(models.Model):
+    ship = models.ForeignKey(
+        Ship,
+        on_delete=models.CASCADE,
+        related_name='ship_perks',
+    )
+    perk = models.ForeignKey(
+        Perk,
+        on_delete=models.CASCADE,
+        related_name='ships_with_perk',
+    )
+    amount = models.PositiveSmallIntegerField('Amount')
+
+    class Meta:
+        unique_together = ('ship', 'perk')
+
+    def __str__(self):
+        return f'{self.ship} - {self.perk}'
 
 
 class UserShip(models.Model):
@@ -62,6 +80,9 @@ class UserShip(models.Model):
         related_name='ship_users',
     )
     on_mission = models.BooleanField('On mission', default=False)
+    perks = models.ManyToManyField(
+        Perk, through='UserShipPerks', related_name='user_ships_with_perk'
+    )
 
     class Meta:
         verbose_name = 'Players ship'
@@ -69,3 +90,15 @@ class UserShip(models.Model):
 
     def __str__(self):
         return f'{self.user} - {self.ship}'
+
+
+class UserShipPerks(models.Model):
+    user_ship = models.ForeignKey(UserShip, on_delete=models.CASCADE)
+    perk = models.ForeignKey(Perk, on_delete=models.CASCADE)
+    amount = models.PositiveSmallIntegerField('Amount')
+
+    class Meta:
+        unique_together = ('user_ship', 'perk')
+
+    def __str__(self):
+        return f'{self.ship} - {self.perk}'
