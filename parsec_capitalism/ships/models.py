@@ -4,27 +4,22 @@ from django.db import models
 User = get_user_model()
 
 
-class Ship(models.Model):
-    slug = models.SlugField(verbose_name='Slug for internal use')
-    name = models.CharField(max_length=128, verbose_name='Name of the ship')
-    price = models.IntegerField(verbose_name='Price')
-    cargo_weight = models.IntegerField(verbose_name='Cargo Weight')
-    cargo_volume = models.IntegerField(verbose_name='Cargo Volume')
-    range = models.IntegerField(verbose_name='Range')
-
-    class Meta:
-        verbose_name = 'Ship'
-        verbose_name_plural = 'Ships'
-
-    def __str__(self):
-        return self.name
-
-
 class Perk(models.Model):
-    slug = models.SlugField('Slug')
+    class PerkTypes(models.TextChoices):
+        PERMANENT = 'PERM', 'Permanent'
+        DISPOSABLE = 'DISP', 'Disposable'
+        ONE_TIMER = '1TIME', 'One-timer'
+        RENT = 'RENT', 'Rent'
+
     name = models.CharField('Perk', max_length=255)
-    num_value = models.IntegerField('Number value')
-    bool_value = models.BooleanField('Boolean value')
+    type = models.CharField(
+        'Perk type',
+        max_length=5,
+        choices=PerkTypes.choices,
+        default=PerkTypes.PERMANENT,
+    )
+    description = models.TextField('Description')
+    ad_text = models.TextField('Ad Text')
 
     class Meta:
         verbose_name = 'Perk'
@@ -34,18 +29,39 @@ class Perk(models.Model):
         return self.name
 
 
+class Ship(models.Model):
+    slug = models.SlugField('Slug for internal use')
+    name = models.CharField('Name of the ship', max_length=128)
+    price = models.PositiveSmallIntegerField('Price')
+    range = models.PositiveSmallIntegerField('Range')
+    cargo_hold = models.PositiveSmallIntegerField('Cargo Hold')
+    perks = models.ManyToManyField(
+        Perk,
+        on_delete=models.CASCADE,
+        related_name='ships_with_perks',
+        verbose_name='Perks',
+    )
+
+    class Meta:
+        verbose_name = 'Ship'
+        verbose_name_plural = 'Ships'
+
+    def __str__(self):
+        return self.name
+
+
 class UserShip(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='player',
+        related_name='user_ships',
     )
     ship = models.ForeignKey(
         Ship,
         on_delete=models.CASCADE,
-        related_name='ships',
+        related_name='ship_users',
     )
-    on_mission = models.BooleanField(verbose_name='On mission', default=False)
+    on_mission = models.BooleanField('On mission', default=False)
 
     class Meta:
         verbose_name = 'Players ship'
