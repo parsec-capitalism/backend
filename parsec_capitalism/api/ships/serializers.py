@@ -1,13 +1,12 @@
 from rest_framework import serializers
 
-from ships.models import Perk, Ship, ShipPerks, UserShip
+from ships.models import Perk, Ship, ShipPerks, UserShip, UserShipPerks
 
 
 class PerkSnippetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Perk
         fields = [
-            'id',
             'name',
         ]
 
@@ -19,7 +18,18 @@ class ShipPerkSerializer(serializers.ModelSerializer):
         model = ShipPerks
         fields = [
             'perk',
-            'amount',
+            'default_amount',
+        ]
+
+
+class UserShipPerkSerializer(serializers.ModelSerializer):
+    perk = PerkSnippetSerializer(read_only=True)
+
+    class Meta:
+        model = UserShipPerks
+        fields = [
+            'perk',
+            'owned_amount',
         ]
 
 
@@ -54,16 +64,32 @@ class BuyShipSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserShip
-        fields = ('id', 'user', 'ship', 'on_mission')
+        fields = (
+            'id',
+            'user',
+            'ship',
+            'on_mission',
+        )
 
 
 class UserShipSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True)
-    ship = serializers.SlugRelatedField(
-        slug_field='slug',
-        queryset=Ship.objects.all(),
+    # user = serializers.StringRelatedField(read_only=True)
+    # ship = serializers.SlugRelatedField(
+    #     slug_field='slug',
+    #     queryset=Ship.objects.all(),
+    # )
+
+    perks = UserShipPerkSerializer(
+        source='usership_perks',
+        many=True,
+        read_only=True,
     )
 
     class Meta:
         model = UserShip
-        fields = ('id', 'user', 'ship', 'on_mission')
+        fields = (
+            'id',
+            'ship',
+            'on_mission',
+            'perks',
+        )

@@ -26,7 +26,7 @@ class ShipsAdmin(admin.ModelAdmin):
     list_display_links = ('name',)
 
 
-class ShipPerkInline(admin.TabularInline):
+class UserShipPerkInline(admin.TabularInline):
     model = UserShip.perks.through
 
 
@@ -37,3 +37,5 @@ class UserShipAdmin(admin.ModelAdmin):
         'ship',
         'on_mission',
     )
+
+    inlines = [UserShipPerkInline]
