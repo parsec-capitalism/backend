@@ -85,7 +85,7 @@ class APIBuyPerk(APIView):
             UserShipPerks.objects.create(
                 user_ship=user_ship,
                 perk=perk,
-                owned_amount=1,
+                owned_amount=amount,
             )
 
         return Response(status=status.HTTP_201_CREATED)
