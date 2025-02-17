@@ -2,6 +2,7 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 from .views import (
+    APIBuyPerk,
     APIBuyShip,
     ListUserShipViewSet,
     ShipViewSet,
@@ -19,4 +20,5 @@ router.register(
 urlpatterns = [
     path('', include(router.urls)),
     path('buy_ship/', APIBuyShip.as_view()),
+    path('buy_perk/', APIBuyPerk.as_view()),
 ]

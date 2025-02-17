@@ -1,0 +1,16 @@
+meta {
+  name: Buy perk for an auth user
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://127.0.0.1:8000/api/v1/buy_perk/
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  user_ship: 33
+  perk: 28
+}

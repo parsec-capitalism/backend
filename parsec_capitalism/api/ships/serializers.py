@@ -1,36 +1,26 @@
 from rest_framework import serializers
 
-from ships.models import Perk, Ship, ShipPerks, UserShip, UserShipPerks
-
-
-class PerkSnippetSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Perk
-        fields = [
-            'name',
-        ]
+from ships.models import Ship, ShipPerks, UserShip, UserShipPerks
 
 
 class ShipPerkSerializer(serializers.ModelSerializer):
-    perk = PerkSnippetSerializer(read_only=True)
-
     class Meta:
         model = ShipPerks
         fields = [
             'perk',
             'default_amount',
         ]
+        depth = 1
 
 
 class UserShipPerkSerializer(serializers.ModelSerializer):
-    perk = PerkSnippetSerializer(read_only=True)
-
     class Meta:
         model = UserShipPerks
         fields = [
             'perk',
             'owned_amount',
         ]
+        depth = 1
 
 
 class ShipSerializer(serializers.ModelSerializer):
@@ -53,6 +43,24 @@ class ShipSerializer(serializers.ModelSerializer):
         )
 
 
+class UserShipSerializer(serializers.ModelSerializer):
+    perks = UserShipPerkSerializer(
+        source='usership_perks',
+        many=True,
+        read_only=True,
+    )
+
+    class Meta:
+        model = UserShip
+        fields = (
+            'id',
+            'ship',
+            'on_mission',
+            'perks',
+        )
+        depth = 1
+
+
 class BuyShipSerializer(serializers.ModelSerializer):
     ship = serializers.SlugRelatedField(
         slug_field='slug',
@@ -72,24 +80,16 @@ class BuyShipSerializer(serializers.ModelSerializer):
         )
 
 
-class UserShipSerializer(serializers.ModelSerializer):
-    # user = serializers.StringRelatedField(read_only=True)
-    # ship = serializers.SlugRelatedField(
+class BuyPerkSerializer(serializers.ModelSerializer):
+    # user_ship = serializers.SlugRelatedField(
     #     slug_field='slug',
     #     queryset=Ship.objects.all(),
     # )
 
-    perks = UserShipPerkSerializer(
-        source='usership_perks',
-        many=True,
-        read_only=True,
-    )
-
     class Meta:
-        model = UserShip
+        model = UserShipPerks
         fields = (
-            'id',
-            'ship',
-            'on_mission',
-            'perks',
+            'user_ship',
+            'perk',
+            'owned_amount',
         )

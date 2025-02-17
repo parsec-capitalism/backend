@@ -103,10 +103,10 @@ class UserShipPerks(models.Model):
         on_delete=models.CASCADE,
         related_name='usership_with_perk',
     )
-    owned_amount = models.PositiveSmallIntegerField('Amount')
+    owned_amount = models.PositiveSmallIntegerField('Amount', default=0)
 
-    class Meta:
-        unique_together = ('user_ship', 'perk')
+    # class Meta:
+    #     unique_together = ('user_ship', 'perk')
 
     def __str__(self):
         return f'{self.user_ship} - {self.perk}'

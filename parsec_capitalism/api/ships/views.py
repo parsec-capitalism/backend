@@ -3,9 +3,14 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from ships.models import Ship, UserShip
+from ships.models import Ship, UserShip, UserShipPerks
 
-from .serializers import BuyShipSerializer, ShipSerializer, UserShipSerializer
+from .serializers import (
+    BuyPerkSerializer,
+    BuyShipSerializer,
+    ShipSerializer,
+    UserShipSerializer,
+)
 
 User = get_user_model()
 
@@ -37,7 +42,6 @@ class APIBuyShip(APIView):
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
 
-        # get ship instance
         ship = data['ship']
 
         # deduct ship's price from user's datacoins
@@ -45,5 +49,43 @@ class APIBuyShip(APIView):
         buyer.datacoins -= ship.price
         buyer.save()
 
-        serializer.save(user=buyer, ship=ship)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        usership = serializer.save(user=buyer, ship=ship)
+
+        # coping perks
+        ship_original_perks = ship.ship_perks.all()
+        for perk in ship_original_perks:
+            UserShipPerks.objects.create(
+                user_ship=usership,
+                perk=perk.perk,
+                owned_amount=perk.default_amount,
+            )
+
+        return Response(status=status.HTTP_201_CREATED)
+
+
+class APIBuyPerk(APIView):
+    def post(self, request):
+        serializer = BuyPerkSerializer(
+            data=request.data,
+            context={'request': request},
+        )
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+
+        user_ship = data['user_ship']
+        perk = data['perk']
+        amount = data['owned_amount']
+
+        if user_ship.usership_perks.filter(perk=perk).exists():
+            obj = UserShipPerks.objects.get(user_ship=user_ship, perk=perk)
+
+            obj.owned_amount += amount
+            obj.save()
+        else:
+            UserShipPerks.objects.create(
+                user_ship=user_ship,
+                perk=perk,
+                owned_amount=1,
+            )
+
+        return Response(status=status.HTTP_201_CREATED)
