@@ -83,6 +83,10 @@ class APIBuyPerk(APIView):
         user_ship = data['user_ship']
         perk = data['perk']
         amount = data['owned_amount']
+        # deduct ship's price from user's datacoins
+        buyer = self.request.user
+        buyer.datacoins -= perk.price * amount
+        buyer.save()
 
         if user_ship.usership_perks.filter(perk=perk).exists():
             obj = UserShipPerks.objects.get(user_ship=user_ship, perk=perk)
