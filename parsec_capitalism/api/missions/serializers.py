@@ -8,12 +8,11 @@ class MissionSerializer(serializers.ModelSerializer):
         model = Mission
         fields = (
             'id',
-            'codename',
             'expansion',
+            'name',
             'reward',
             'summary',
             'duration',
             'distance',
             'volume',
-            'weight',
         )

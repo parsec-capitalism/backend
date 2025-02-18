@@ -1,0 +1,25 @@
+{
+  "Ships": [
+    {
+      "slug": "star_jumper",
+      "name": "Star Jumper",
+      "price": "40",
+      "range": "300",
+      "cargo_hold": "25"
+    },
+    {
+      "slug": "fat_joe",
+      "name": "Fat Joe",
+      "price": "85",
+      "range": "150",
+      "cargo_hold": "120"
+    },
+    {
+      "slug": "junk",
+      "name": "Junk",
+      "price": "10",
+      "range": "80",
+      "cargo_hold": "15"
+    }
+  ]
+}

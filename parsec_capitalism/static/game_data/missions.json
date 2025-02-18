@@ -1,0 +1,49 @@
+{
+  "Missions": [
+    {
+      "expansion": "Starter Contracts",
+      "name": "In-n-Out",
+      "summary": "Quick flight to the nearest star to get a food delivery.",
+      "reward": "20",
+      "duration": "10",
+      "distance": "100",
+      "volume": "2"
+    },
+    {
+      "expansion": "Starter Contracts",
+      "name": "Build a castle",
+      "summary": "Bring some building materials for the mayor's new mansion",
+      "reward": "50",
+      "duration": "60",
+      "distance": "150",
+      "volume": "105"
+    },
+    {
+      "expansion": "Starter Contracts",
+      "name": "Far far away",
+      "summary": "Deliver supplies for the deep space exploration station.",
+      "reward": "15",
+      "duration": "85",
+      "distance": "300",
+      "volume": "20"
+    },
+    {
+      "expansion": "Small step forward",
+      "name": "Real Deal",
+      "summary": "...",
+      "reward": "90",
+      "duration": "75",
+      "distance": "250",
+      "volume": "10"
+    },
+    {
+      "expansion": "Small step forward",
+      "name": "Doing God's work",
+      "summary": "...",
+      "reward": "150",
+      "duration": "600",
+      "distance": "100",
+      "volume": "1"
+    }
+  ]
+}

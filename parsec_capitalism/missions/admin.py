@@ -5,4 +5,4 @@ from .models import Mission
 
 @admin.register(Mission)
 class MissionsAdmin(admin.ModelAdmin):
-    list_display = ('codename',)
+    list_display = ('name',)

@@ -1,6 +1,18 @@
 from rest_framework import serializers
 
-from ships.models import Ship, ShipPerks, UserShip, UserShipPerks
+from ships.models import Perk, Ship, ShipPerks, UserShip, UserShipPerks
+
+
+class PerkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Perk
+        fields = [
+            'name',
+            'type',
+            'description',
+            'ad_text',
+            'price',
+        ]
 
 
 class ShipPerkSerializer(serializers.ModelSerializer):
@@ -81,11 +93,6 @@ class BuyShipSerializer(serializers.ModelSerializer):
 
 
 class BuyPerkSerializer(serializers.ModelSerializer):
-    # user_ship = serializers.SlugRelatedField(
-    #     slug_field='slug',
-    #     queryset=Ship.objects.all(),
-    # )
-
     class Meta:
         model = UserShipPerks
         fields = (

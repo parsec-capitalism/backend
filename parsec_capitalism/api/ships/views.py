@@ -3,16 +3,24 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from ships.models import Ship, UserShip, UserShipPerks
+from ships.models import Perk, Ship, UserShip, UserShipPerks
 
 from .serializers import (
     BuyPerkSerializer,
     BuyShipSerializer,
+    PerkSerializer,
     ShipSerializer,
     UserShipSerializer,
 )
 
 User = get_user_model()
+
+
+class PerkViewSet(viewsets.ReadOnlyModelViewSet):
+    """List of all Perks"""
+
+    queryset = Perk.objects.all()
+    serializer_class = PerkSerializer
 
 
 class ShipViewSet(viewsets.ReadOnlyModelViewSet):

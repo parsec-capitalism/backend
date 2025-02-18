@@ -5,11 +5,13 @@ from .views import (
     APIBuyPerk,
     APIBuyShip,
     ListUserShipViewSet,
+    PerkViewSet,
     ShipViewSet,
 )
 
 router = DefaultRouter()
 router.register('ships', ShipViewSet)
+router.register('perks', PerkViewSet)
 router.register(
     'hangar',
     ListUserShipViewSet,

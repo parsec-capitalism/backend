@@ -20,6 +20,7 @@ class Perk(models.Model):
     )
     description = models.TextField('Description', default='')
     ad_text = models.TextField('Ad Text', default='')
+    price = models.PositiveIntegerField('Price')
 
     class Meta:
         verbose_name = 'Perk'

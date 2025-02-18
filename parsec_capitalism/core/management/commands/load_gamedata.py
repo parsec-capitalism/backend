@@ -1,4 +1,3 @@
-import csv
 import json
 import os
 
@@ -14,22 +13,13 @@ class Command(BaseCommand):
     help = 'Command that loads basic game objects from csv'
 
     def load_ships(self, file_path):
-        """Load ships' data from the csv file"""
-        with open(file_path) as csvfile:
-            ship_db = csv.reader(csvfile, delimiter=',')
-            next(ship_db, None)
-            ships = [
-                Ship(
-                    slug=row[0],
-                    name=row[1],
-                    price=row[2],
-                    range=row[3],
-                    cargo_hold=row[4],
-                )
-                for row in ship_db
-            ]
+        """Load ships' data from the json file"""
+        with open(file_path) as file:
+            data = json.load(file)
+            ship_dict = data['Ships']
+            ships = [Ship(**ship_data) for ship_data in ship_dict]
             Ship.objects.bulk_create(ships)
-            self.stdout.write(f'Successfully loaded {len(ships)} ships object(s)')
+            self.stdout.write(f'Successfully loaded {len(ship_dict)} ship object(s)')
 
     def load_perks(self, file_path):
         """Load perks' data from the json file"""
@@ -38,28 +28,18 @@ class Command(BaseCommand):
             perk_dict = data['Perks']
             perks = [Perk(**perk_data) for perk_data in perk_dict]
             Perk.objects.bulk_create(perks)
-            self.stdout.write(f'Successfully loaded {len(perk_dict)} perks object(s)')
+            self.stdout.write(f'Successfully loaded {len(perk_dict)} perk object(s)')
 
     def load_missions(self, file_path):
-        """Load missions' data from the csv file"""
-        with open(file_path) as csvfile:
-            mission_db = csv.reader(csvfile, delimiter=',')
-            next(mission_db, None)
-            missions = [
-                Mission(
-                    codename=row[0],
-                    expansion=row[1],
-                    reward=row[2],
-                    summary=row[3],
-                    duration=row[4],
-                    distance=row[5],
-                    volume=row[6],
-                    weight=row[7],
-                )
-                for row in mission_db
-            ]
+        """Load perks' data from the json file"""
+        with open(file_path) as file:
+            data = json.load(file)
+            mission_dict = data['Missions']
+            missions = [Mission(**mission_data) for mission_data in mission_dict]
             Mission.objects.bulk_create(missions)
-            self.stdout.write(f'Successfully loaded {len(missions)} missions object(s)')
+            self.stdout.write(
+                f'Successfully loaded {len(mission_dict)} mission object(s)'
+            )
 
     def handle(self, *args, **kwargs):
         directory = os.path.join(BASE_DIR, 'static/game_data/')
@@ -74,10 +54,10 @@ class Command(BaseCommand):
                 for file in os.listdir(directory):
                     file_path = os.path.join(directory, file)
 
-                    if file.endswith('ships.csv'):
+                    if file.endswith('ships.json'):
                         self.load_ships(file_path)
 
-                    if file.endswith('missions.csv'):
+                    if file.endswith('missions.json'):
                         self.load_missions(file_path)
 
                     if file.endswith('perks.json'):
