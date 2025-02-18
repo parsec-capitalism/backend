@@ -5,21 +5,38 @@
       "name": "Star Jumper",
       "price": "40",
       "range": "300",
-      "cargo_hold": "25"
+      "cargo_hold": "25",
+      "perks": [
+        {
+          "perk": "SteelOnion",
+          "default_amount": "5"
+        }
+      ]
     },
     {
       "slug": "fat_joe",
       "name": "Fat Joe",
       "price": "85",
       "range": "150",
-      "cargo_hold": "120"
+      "cargo_hold": "120",
+      "perks": [
+        {
+          "perk": "FahrenGATE",
+          "default_amount": "11"
+        },
+        {
+          "perk": "Electromagnetic DeFryer",
+          "default_amount": "55"
+        }
+      ]
     },
     {
       "slug": "junk",
       "name": "Junk",
       "price": "10",
       "range": "80",
-      "cargo_hold": "15"
+      "cargo_hold": "15",
+      "perks": []
     }
   ]
 }
