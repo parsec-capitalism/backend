@@ -52,7 +52,6 @@ class APIBuyShip(APIView):
 
         ship = data['ship']
 
-        # deduct ship's price from user's datacoins
         buyer = self.request.user
         buyer.datacoins -= ship.price
         buyer.save()
@@ -83,7 +82,7 @@ class APIBuyPerk(APIView):
         user_ship = data['user_ship']
         perk = data['perk']
         amount = data['owned_amount']
-        # deduct ship's price from user's datacoins
+
         buyer = self.request.user
         buyer.datacoins -= perk.price * amount
         buyer.save()
